@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Add a default marker to a web map</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+ 
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoib2Nhc3RlbGxvIiwiYSI6ImNrdmg2ZW1ybTF5a3EydnFpNGZ5bTVjcDQifQ.8A9RLtH42G7Ou_nQnuxatA';
+const map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11',
+//center: [12.550343, 55.665957],
+center: [-75.1497, 39.9812],
+zoom: 12
+});
+ 
+// Create a default Marker and add it to the map.
+//const marker1 = new mapboxgl.Marker()
+//.setLngLat([12.554729, 55.70651])
+//.addTo(map);
+ 
+ const marker1 = new mapboxgl.Marker({color: "#990033"})
+.setLngLat([-75.1497, 39.9812])
+.setPopup(new mapboxgl.Popup().setHTML("<h1>Temple University</h1>")) // add popup
+.addTo(map);
+
+// Create a default Marker, colored black, rotated 45 degrees.
+//const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+//.setLngLat([12.65147, 55.608166])
+//.addTo(map);
+
+const marker2 = new mapboxgl.Marker({ color: 'blue', rotation: 45 })
+.setLngLat([-75.1635, 39.9528])
+.setPopup(new mapboxgl.Popup().setHTML("<h1>City Hall</h1>")) // add popup
+.addTo(map);
+
+</script>
+ 
+</body>
+</html>
