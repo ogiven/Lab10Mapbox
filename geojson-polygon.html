@@ -18,13 +18,13 @@ body { margin: 0; padding: 0; }
 const map = new mapboxgl.Map({
 container: 'map', // container ID
 style: 'mapbox://styles/mapbox/light-v10', // style URL
-center: [-68.137343, 45.137451], // starting position
+center: [-77.8617455074526, 40.79222698227641], // starting position
 zoom: 5 // starting zoom
 });
  
 map.on('load', () => {
 // Add a data source containing GeoJSON data.
-map.addSource('maine', {
+map.addSource('pennsylvania', {
 'type': 'geojson',
 'data': {
 'type': 'Feature',
@@ -33,26 +33,16 @@ map.addSource('maine', {
 // These coordinates outline Maine.
 'coordinates': [
 [
-[-67.13734, 45.13745],
-[-66.96466, 44.8097],
-[-68.03252, 44.3252],
-[-69.06, 43.98],
-[-70.11617, 43.68405],
-[-70.64573, 43.09008],
-[-70.75102, 43.08003],
-[-70.79761, 43.21973],
-[-70.98176, 43.36789],
-[-70.94416, 43.46633],
-[-71.08482, 45.30524],
-[-70.66002, 45.46022],
-[-70.30495, 45.91479],
-[-70.00014, 46.69317],
-[-69.23708, 47.44777],
-[-68.90478, 47.18479],
-[-68.2343, 47.35462],
-[-67.79035, 47.06624],
-[-67.79141, 45.70258],
-[-67.13734, 45.13745]
+[-80.51494363319563, 39.714833619921784],
+[-75.76885009149379, 39.72750904303806],
+[-75.40080811545904, 39.81195231263189],
+[-74.73064212924652, 40.15708590825873],
+[-75.18657472642388, 40.65901252659579],
+[-74.6866968186752, 41.35953362863815],
+[-75.3458764772449, 41.983216793883216],
+[-79.75688702584048, 42.00771183737454],
+[-79.7623801896619, 42.499681879108735],
+[-80.51494363319563, 42.30904192350393]
 ]
 ]
 }
@@ -63,7 +53,7 @@ map.addSource('maine', {
 map.addLayer({
 'id': 'maine',
 'type': 'fill',
-'source': 'maine', // reference the data source
+'source': 'pennsylvania', // reference the data source
 'layout': {},
 'paint': {
 'fill-color': '#0080ff', // blue color fill
@@ -74,7 +64,7 @@ map.addLayer({
 map.addLayer({
 'id': 'outline',
 'type': 'line',
-'source': 'maine',
+'source': 'pennsylvania',
 'layout': {},
 'paint': {
 'line-color': '#000',
