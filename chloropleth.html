@@ -2,32 +2,81 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Add a polygon to a map using a GeoJSON source</title>
+<title>Add a chloropleth map using a GeoJSON source</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
 <style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    h2,
+    h3 {
+      margin: 10px;
+      font-size: 1.2em;
+    }
+    h3 {
+      font-size: 1em;
+    }
+    p {
+      font-size: 0.85em;
+      margin: 10px;
+      text-align: left;
+    }
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    #features {
+      top: 0;
+      height: 50px;
+      margin-top: 20px;
+      width: 175px;
+    }
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+    #legend {
+      padding: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      line-height: 18px;
+      height: 150px;
+      margin-bottom: 40px;
+      width: 100px;
+    }
+    .legend-key {
+      display: inline-block;
+      border-radius: 20%;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
 </style>
 </head>
 <body>
 <div id="map"></div>
+  <div class="map-overlay" id="features">
+    <h2>Blood lead levels</h2>
+  </div>
+<div class="map-overlay" id="legend"></div>
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1Ijoib2Nhc3RlbGxvIiwiYSI6ImNrdmg2ZW1ybTF5a3EydnFpNGZ5bTVjcDQifQ.8A9RLtH42G7Ou_nQnuxatA';
-const map = new mapboxgl.Map({
-container: 'map', // container ID
-style: 'mapbox://styles/mapbox/light-v10', // style URL
-center: [-75.1497, 40], // starting position
-zoom: 11 // starting zoom
-});
- 
-map.on('load', () => {
- 
- map.addSource('bloodlead', {
-'type': 'geojson',
-'data': 'blood_lead.geojson'
-});
+  const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/light-v10', // style URL
+  center: [-75.1497, 40], // starting position
+  zoom: 11 // starting zoom
+  });
+
+  map.on('load', () => {
+
+   map.addSource('bloodlead', {
+  'type': 'geojson',
+  'data': 'blood_lead.geojson'
+  });
 
   map.addLayer({
       'id': 'bloodlead-polygon',
@@ -38,15 +87,16 @@ map.on('load', () => {
         'fill-color': {
                 property: 'perc_5plus',
                 stops: [
-                  [5, "#dee5e5"],
-                  [10, "#e31a1c"],
-                  [15, "#fd8d3c"],
-                  [20, "#fecc5c"],
-                  [21, "#ffffb2"],
+                  [0,"#ffffff"],
+                  [5, "#c994c7"],
+                  [10, "#df65b0"],
+                  [15, "#dd1c76"],
+                  [20, "#980042"],
+                  [21, "#33a02c"],
                   [22, '#33a02c']
                 ]
-        }, // blue color fill
-        'fill-opacity': 0.5
+        },
+        'fill-opacity': 0.75
       }
     });
 
@@ -59,6 +109,21 @@ map.on('load', () => {
       }
       });
 
+    // add legend
+    var layers = ['No data', '<5%', '6-10%', '11-15%', '16-20%', '>20%'];
+    var colors = ['#000000', '#ffffff', '#c994c7', '#df65b0', '#dd1c76', '#980042'];
+    for (i = 0; i < layers.length; i++) {
+      var layer = layers[i];
+      var color = colors[i];
+      var item = document.createElement('div');
+      var key = document.createElement('span');
+      key.className = 'legend-key';
+      key.style.backgroundColor = color;var value = document.createElement('span');
+      value.innerHTML = layer;
+      item.appendChild(key);
+      item.appendChild(value);
+      legend.appendChild(item);
+    }
 
 });
 </script>

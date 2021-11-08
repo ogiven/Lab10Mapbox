@@ -15,63 +15,63 @@ body { margin: 0; padding: 0; }
 <div id="map"></div>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1Ijoib2Nhc3RlbGxvIiwiYSI6ImNrdmg2ZW1ybTF5a3EydnFpNGZ5bTVjcDQifQ.8A9RLtH42G7Ou_nQnuxatA';
-const map = new mapboxgl.Map({
-container: 'map', // container ID
-style: 'mapbox://styles/mapbox/light-v10', // style URL
-center: [-77.8617455074526, 40.79222698227641], // starting position
-zoom: 7 // starting zoom
-});
- 
-map.on('load', () => {
-// Add a data source containing GeoJSON data.
-map.addSource('pennsylvania', {
-'type': 'geojson',
-'data': {
-'type': 'Feature',
-'geometry': {
-'type': 'Polygon',
-// These coordinates outline Maine.
-'coordinates': [
-[
-[-80.51494363319563, 39.714833619921784],
-[-75.76885009149379, 39.72750904303806],
-[-75.40080811545904, 39.81195231263189],
-[-74.73064212924652, 40.15708590825873],
-[-75.18657472642388, 40.65901252659579],
-[-74.6866968186752, 41.35953362863815],
-[-75.3458764772449, 41.983216793883216],
-[-79.75688702584048, 42.00771183737454],
-[-79.7623801896619, 42.499681879108735],
-[-80.51494363319563, 42.30904192350393]
-]
-]
-}
-}
-});
+  const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/light-v10', // style URL
+  center: [-77.8617455074526, 40.79222698227641], // starting position
+  zoom: 7 // starting zoom
+  });
 
-// Add a new layer to visualize the polygon.
-map.addLayer({
-'id': 'maine',
-'type': 'fill',
-'source': 'pennsylvania', // reference the data source
-'layout': {},
-'paint': {
-'fill-color': '#0080ff', // blue color fill
-'fill-opacity': 0.5
-}
-});
-// Add a black outline around the polygon.
-map.addLayer({
-'id': 'outline',
-'type': 'line',
-'source': 'pennsylvania',
-'layout': {},
-'paint': {
-'line-color': '#000',
-'line-width': 3
-}
-});
-});
+  map.on('load', () => {
+  // Add a data source containing GeoJSON data.
+  map.addSource('pennsylvania', {
+  'type': 'geojson',
+  'data': {
+  'type': 'Feature',
+  'geometry': {
+  'type': 'Polygon',
+  // These coordinates outline Maine.
+  'coordinates': [
+  [
+  [-80.51494363319563, 39.714833619921784],
+  [-75.76885009149379, 39.72750904303806],
+  [-75.40080811545904, 39.81195231263189],
+  [-74.73064212924652, 40.15708590825873],
+  [-75.18657472642388, 40.65901252659579],
+  [-74.6866968186752, 41.35953362863815],
+  [-75.3458764772449, 41.983216793883216],
+  [-79.75688702584048, 42.00771183737454],
+  [-79.7623801896619, 42.499681879108735],
+  [-80.51494363319563, 42.30904192350393]
+  ]
+  ]
+  }
+  }
+  });
+
+  // Add a new layer to visualize the polygon.
+  map.addLayer({
+  'id': 'maine',
+  'type': 'fill',
+  'source': 'pennsylvania', // reference the data source
+  'layout': {},
+  'paint': {
+  'fill-color': '#0080ff', // blue color fill
+  'fill-opacity': 0.5
+  }
+  });
+  // Add a black outline around the polygon.
+  map.addLayer({
+  'id': 'outline',
+  'type': 'line',
+  'source': 'pennsylvania',
+  'layout': {},
+  'paint': {
+  'line-color': '#000',
+  'line-width': 3
+  }
+  });
+  });
 </script>
  
 </body>

@@ -16,25 +16,24 @@ body { margin: 0; padding: 0; }
  
 <script>
   mapboxgl.accessToken = 'pk.eyJ1Ijoib2Nhc3RlbGxvIiwiYSI6ImNrdmg2ZW1ybTF5a3EydnFpNGZ5bTVjcDQifQ.8A9RLtH42G7Ou_nQnuxatA';
-const map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v11',
-//center: [12.550343, 55.665957],
-center: [-75.1497, 39.9812],
-zoom: 12
-});
+  const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  //center: [12.550343, 55.665957],
+  center: [-75.1497, 39.9812],
+  zoom: 12
+  });
 
- const marker1 = new mapboxgl.Marker({color: "#990033"})
-.setLngLat([-75.1497, 39.9812])
-.setPopup(new mapboxgl.Popup().setHTML("<h1>Temple University</h1>")) // add popup
-.addTo(map);
+   const marker1 = new mapboxgl.Marker({color: "#990033"})
+  .setLngLat([-75.1497, 39.9812])
+  .setPopup(new mapboxgl.Popup().setHTML("<h1>Temple University</h1>")) // add popup
+  .addTo(map);
 
-const marker2 = new mapboxgl.Marker({ color: 'blue', rotation: 45 })
-.setLngLat([-75.1635, 39.9528])
-.setPopup(new mapboxgl.Popup().setHTML("<h1>City Hall</h1>")) // add popup
-.addTo(map);
+  const marker2 = new mapboxgl.Marker({ color: 'blue', rotation: 45 })
+  .setLngLat([-75.1635, 39.9528])
+  .setPopup(new mapboxgl.Popup().setHTML("<h1>City Hall</h1>")) // add popup
+  .addTo(map);
 
 </script>
- 
 </body>
 </html>
