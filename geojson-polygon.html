@@ -23,7 +23,7 @@ zoom: 5 // starting zoom
 });
  
 map.on('load', () => {
-Add a data source containing GeoJSON data.
+// Add a data source containing GeoJSON data.
 map.addSource('maine', {
 'type': 'geojson',
 'data': {
@@ -59,14 +59,9 @@ map.addSource('maine', {
 }
 });
 
-//  map.addSource('bloodlead', {
-// 'type': 'geojson',
-// 'data': 'blood_lead.geojson'
-// });
-
-Add a new layer to visualize the polygon.
+// Add a new layer to visualize the polygon.
 map.addLayer({
-'id': 'bloodlead',
+'id': 'maine',
 'type': 'fill',
 'source': 'maine', // reference the data source
 'layout': {},
@@ -86,38 +81,6 @@ map.addLayer({
 'line-width': 3
 }
 });
-
-  // map.addLayer({
-  //     'id': 'bloodlead-polygon',
-  //     'type': 'fill',
-  //     'source': 'bloodlead', // reference the data source
-  //     'layout': {},
-  //     'paint': {
-  //       'fill-color': {
-  //               property: 'perc_5plus',
-  //               stops: [
-  //                 [5, "#dee5e5"],
-  //                 [10, "#e31a1c"],
-  //                 [15, "#fd8d3c"],
-  //                 [20, "#fecc5c"],
-  //                 [21, "#ffffb2"],
-  //                 [22, '#33a02c']
-  //               ]
-  //       }, // blue color fill
-  //       'fill-opacity': 0.5
-  //     }
-  //   });
-
-  //   map.addLayer({
-  //     'id': 'bloodlead-bound',
-  //     'type': 'line',
-  //     'source': 'bloodlead',
-  //     'paint': {'line-color': '#000',
-  //     'line-width': 1
-  //     }
-  //     });
-
-
 });
 </script>
  
